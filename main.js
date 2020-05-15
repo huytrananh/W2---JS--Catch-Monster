@@ -25,7 +25,7 @@ let bgImage, heroImage, monsterImage;
 //let startTime = Date.now();
 //const SECONDS_PER_ROUND = 5;
 //let elapsedTime = 0;
-let time = 5
+let time = 15
 let score = 0
 
 function loadImages() {
@@ -96,18 +96,14 @@ let update = function () {
   // Update the time.
   //elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
-  if (38 in keysDown) { // Player is holding up key
-    heroY -= 5;
-  }
-  if (40 in keysDown) { // Player is holding down key
-    heroY += 5;
-  }
-  if (37 in keysDown) { // Player is holding left key
-    heroX -= 5;
-  }
-  if (39 in keysDown) { // Player is holding right key
-    heroX += 5;
-  }
+  if (38 in keysDown && time > 0) {heroY -= 5}
+  else {heroY -= 0}
+  if (40 in keysDown && time > 0) {heroY += 5}
+  else {heroY += 0}
+  if (37 in keysDown && time > 0) {heroX -= 5}
+  else {heroY -= 0}
+  if (39 in keysDown && time > 0) {heroX += 5}
+  else {heroY += 0}
 
   if(heroX < 0){
     heroX = canvas.width - 32
@@ -134,6 +130,7 @@ let update = function () {
     monsterY = Math.floor(Math.random()*(canvas.height-32)) 
 
     score++
+
   }
 };
 
@@ -155,8 +152,11 @@ var render = function () {
 
 function signUp(){
   let userName = document.getElementById("username").value
+  document.getElementById('username').value = ""
   document.getElementById("usernamearea").innerHTML = `Your name is: ${userName}`
 }
+signUp()
+
 
 function timeCounting(){
   myTime = setInterval(() => {
@@ -169,6 +169,7 @@ function timeCounting(){
   }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
 timeCounting()
+
 function timeOut() {
   clearInterval(myTime)
 }
@@ -179,8 +180,8 @@ function timeOut() {
  * render (based on the state of our game, draw the right things)
  */
 var main = function () {
-  update(); 
-  render();
+  update()
+  render()
   // Request to do this again ASAP. This is a special method
   // for web browsers. 
   requestAnimationFrame(main);
@@ -192,7 +193,6 @@ var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
 // Let's play this game!
-loadImages();
-setupKeyboardListeners();
-
-main();
+loadImages()
+setupKeyboardListeners()
+main()
