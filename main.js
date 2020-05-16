@@ -147,7 +147,7 @@ var render = function () {
   if (monsterReady) {
     ctx.drawImage(monsterImage, monsterX, monsterY)
   }
-  document.getElementById("usercore").innerHTML = `Your Core: ${score}`
+  document.getElementById("userscore").innerHTML = `Your Score: ${score}`
 }
 
 function signUp(){
@@ -157,7 +157,6 @@ function signUp(){
 }
 signUp()
 
-
 function timeCounting(){
   myTime = setInterval(() => {
       time -= 1
@@ -165,6 +164,7 @@ function timeCounting(){
       if(time < 0){
           document.getElementById("timeleft").innerHTML = "Time Over!"
           timeOut()
+          document.getElementById("resetbutton").disabled = false
       }
   }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
@@ -173,6 +173,18 @@ timeCounting()
 function timeOut() {
   clearInterval(myTime)
 }
+
+function reset(){
+  document.getElementById("usernamearea").innerHTML = `Your name is: ${""}`
+  timeOut()
+  time = 15
+  document.getElementById("timeleft").innerHTML = `Time left: ${time} second`
+  timeCounting()
+  score = 0
+  document.getElementById("userscore").innerHTML = `Your score: ${""}`
+}
+reset()
+
 
 /**
  * The main game loop. Most every game will have two distinct parts:
@@ -193,6 +205,8 @@ var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
 // Let's play this game!
+
 loadImages()
 setupKeyboardListeners()
+document.getElementById("resetbutton").disabled = true
 main()
