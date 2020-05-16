@@ -15,8 +15,8 @@ let ctx;
 
 canvas = document.createElement("canvas");
 ctx = canvas.getContext("2d");
-canvas.width = 512;
-canvas.height = 480;
+canvas.width = 500;
+canvas.height = 500;
 document.body.appendChild(canvas);
 
 let bgReady, heroReady, monsterReady;
@@ -25,8 +25,10 @@ let bgImage, heroImage, monsterImage;
 //let startTime = Date.now();
 //const SECONDS_PER_ROUND = 5;
 //let elapsedTime = 0;
-let time = 15
+let time = 5
 let score = 0
+
+let historyScore = []
 
 function loadImages() {
   bgImage = new Image();
@@ -41,14 +43,14 @@ function loadImages() {
     // show the hero image
     heroReady = true;
   };
-  heroImage.src = "images/hero.png";
+  heroImage.src = "images/hero.png"
 
   monsterImage = new Image();
   monsterImage.onload = function () {
     // show the monster image
     monsterReady = true;
   };
-  monsterImage.src = "images/monster.png";
+  monsterImage.src = "images/monster.jpg";
 }
 
 /** 
@@ -163,8 +165,10 @@ function timeCounting(){
       document.getElementById("timeleft").innerHTML = `Time left: ${time} second`
       if(time < 0){
           document.getElementById("timeleft").innerHTML = "Time Over!"
-          timeOut()
-          document.getElementById("resetbutton").disabled = false
+          timeOut() 
+          historyScore.push(score)
+          document.getElementById("historyscorearea").innerHTML = `History: ${historyScore}`
+          console.log()
       }
   }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
@@ -177,13 +181,20 @@ function timeOut() {
 function reset(){
   document.getElementById("usernamearea").innerHTML = `Your name is: ${""}`
   timeOut()
-  time = 15
+  time = 5
   document.getElementById("timeleft").innerHTML = `Time left: ${time} second`
   timeCounting()
   score = 0
   document.getElementById("userscore").innerHTML = `Your score: ${""}`
+  
+  heroX = canvas.width / 2;
+  heroY = canvas.height / 2;
+
+  monsterX = 100;
+  monsterY = 100;
 }
 reset()
+
 
 
 /**
@@ -197,7 +208,11 @@ var main = function () {
   // Request to do this again ASAP. This is a special method
   // for web browsers. 
   requestAnimationFrame(main);
-};
+  document.getElementById("resetbutton").disabled = true
+  if(time < 0){
+    document.getElementById("resetbutton").disabled = false
+  }
+}
 
 // Cross-browser support for requestAnimationFrame.
 // Safely ignore this line. It's mostly here for people with old web browsers.
@@ -208,5 +223,5 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 
 loadImages()
 setupKeyboardListeners()
-document.getElementById("resetbutton").disabled = true
 main()
+
