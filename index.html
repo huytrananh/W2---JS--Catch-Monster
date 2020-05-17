@@ -2,24 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Best Game Ever!</title>
+    <title>Catch Covid-19</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <input type="text" placeholder="Input your name" id="username">
-    <button id="signupbutton" onclick="signUp()">Sign Up</button>
-    <div id="usernamearea">Your name is: </div>
-    <button id="startbutton" onclick="reset()">Start</button>
-    <button id="resetbutton" onclick="reset()">Reset</button>
-    <div id="timeleft"></div>
-    <div id="historyscorearea">History: </div>
-    <div id="bestscore">Best Score: </div>
-    <div id="userscore"></div>
+    <nav class="navbar text-light bg-dark">
+      <div class="col">
+        <h1 id="usernamearea">Hello Doctor </h1>
+        <div id="userscore"></div>
+        <div id="timeleft"></div>
+      </div>
+      <div class="col">
+          <input type="text" placeholder="Input doctor's name" id="username" class="input">
+          <button id="signupbutton" onclick="signUp()" class="button">Sign Up</button>
+      </div>
+      <div class="col">
+          <button id="startbutton" onclick="reset()" class="button">Start</button>
+          <button id="resetbutton" onclick="reset()" class="button">Reset</button>
+      </div>
+    </nav>
+
+    <section >
+      <script src="main.js"></script>
+    </section>
     
-
-
-
-
-
-    <script src="main.js"></script>
+    <footer class="navbar text-light bg-dark">
+      <div class="col">
+        <h1 id="historyscorearea">History: </h1>
+      </div>
+      <div class="col">
+        <h1 id="bestscore">Best Score: </h1>
+      </div>
+    </footer>
   </body>
 </html>

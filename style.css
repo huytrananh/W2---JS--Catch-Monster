@@ -1,0 +1,28 @@
+.button{
+    width: 70px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+}
+
+.col{
+    text-align: center;
+}
+
+footer{
+    height: 95px
+}
+
+.input{
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+}
+
+body{
+    background-image: url(https://thumbs.dreamstime.com/z/clinic-building-vector-flat-illustration-doctors-nurse-standing-front-hospital-ambulance-medicine-diagnostic-banner-128360964.jpg);
+    /* background-repeat: no-repeat; */
+    text-align: center;
+}

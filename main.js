@@ -25,7 +25,7 @@ let bgImage, heroImage, monsterImage;
 //let startTime = Date.now();
 //const SECONDS_PER_ROUND = 5;
 //let elapsedTime = 0;
-let time = 5
+let time = 15
 let score = 0
 
 let historyScore = []
@@ -155,7 +155,7 @@ var render = function () {
 function signUp(){
   let userName = document.getElementById("username").value
   document.getElementById('username').value = ""
-  document.getElementById("usernamearea").innerHTML = `Your name is: ${userName}`
+  document.getElementById("usernamearea").innerHTML = `Hello Doctor ${userName}`
 }
 signUp()
 
@@ -164,13 +164,13 @@ function timeCounting(){
       time -= 1
       document.getElementById("timeleft").innerHTML = `Time left: ${time} second`
       if(time < 0){
-          document.getElementById("timeleft").innerHTML = "Time Over!"
-          timeOut() 
-          historyScore.push(score)
-          document.getElementById("historyscorearea").innerHTML = `History: ${historyScore}`
+        document.getElementById("timeleft").innerHTML = "Time Over!"
+        timeOut() 
+        historyScore.push(score)
+        document.getElementById("historyscorearea").innerHTML = `History: ${historyScore}`
           
-          let bestScore = Math.max(...historyScore)
-          document.getElementById("bestscore").innerHTML = `Best Score: ${bestScore}`
+        let bestScore = Math.max(...historyScore)
+        document.getElementById("bestscore").innerHTML = `Best Score: ${bestScore}`
       }
   }, 1000)// every 1 second, it will add 1 into time variable (computer use millisecond so 1000 is 1 second)
 }
@@ -181,9 +181,9 @@ function timeOut() {
 }
 
 function reset(){
-  document.getElementById("usernamearea").innerHTML = `Your name is: ${""}`
+  document.getElementById("usernamearea").innerHTML = `Hello Doctor ${""}`
   timeOut()
-  time = 5
+  time = 15
   document.getElementById("timeleft").innerHTML = `Time left: ${time} second`
   timeCounting()
   score = 0
